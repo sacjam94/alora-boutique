@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zara Threads – Ladies & Teen Fashion</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #faf8f4;
+    --off-white: #f3f0ea;
+    --charcoal: #1c1c1c;
+    --mid: #5a5a5a;
+    --light: #9a9a8e;
+    --accent: #b8956a;
+    --accent-light: #e8ddd0;
+    --border: #e0dbd2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--mid);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-cta {
+    background: var(--charcoal);
+    color: var(--cream) !important;
+    padding: 8px 20px;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--accent) !important; color: var(--cream) !important; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--charcoal); }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 64px;
+  }
+  .hero-text {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6vw 5vw 6vw 8vw;
+  }
+  .hero-tag {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-tag::before { content:''; display:block; width:32px; height:1px; background:var(--accent); }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--charcoal);
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--mid);
+    max-width: 400px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 14px 32px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-outline {
+    border: 1px solid var(--charcoal);
+    color: var(--charcoal);
+    padding: 14px 32px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--charcoal); color: var(--cream); }
+
+  .hero-visual {
+    background: var(--off-white);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 520px;
+  }
+  .hero-visual-inner {
+    width: 65%;
+    aspect-ratio: 3/4;
+    background: var(--accent-light);
+    border-radius: 4px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px;
+    position: relative;
+  }
+  .dress-svg { width: 120px; opacity: 0.7; }
+  .hero-visual-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .hero-float-badge {
+    position: absolute;
+    bottom: -16px; left: -16px;
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 16px 20px;
+    border-radius: 2px;
+  }
+  .hero-float-badge .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1;
+    display: block;
+  }
+  .hero-float-badge .lbl {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-top: 4px;
+    display: block;
+  }
+  .hero-float-top {
+    position: absolute;
+    top: 20px; right: -12px;
+    background: var(--accent);
+    color: var(--cream);
+    padding: 10px 16px;
+    border-radius: 2px;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    writing-mode: vertical-rl;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 7rem 8vw; }
+  .section-tag {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-tag::before { content:''; display:block; width:24px; height:1px; background: var(--accent); }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  h2 em { font-style: italic; color: var(--accent); }
+
+  /* ABOUT */
+  #about { background: var(--off-white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: var(--accent-light);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-img-accent {
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 60%;
+    aspect-ratio: 1;
+    background: var(--border);
+    border-radius: 4px;
+    z-index: -1;
+  }
+  .about-text p { color: var(--mid); margin-bottom: 1.2rem; font-weight: 300; }
+  .stats-row {
+    display: flex; gap: 2.5rem; margin-top: 2.5rem;
+    border-top: 1px solid var(--border); padding-top: 2rem;
+  }
+  .stat .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem; font-weight: 300; color: var(--charcoal);
+    line-height: 1;
+    display: block;
+  }
+  .stat .lbl { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light); }
+
+  /* PRODUCTS */
+  #products { background: var(--cream); }
+  .category-filter {
+    display: flex; gap: 1rem; flex-wrap: wrap; margin: 2.5rem 0;
+  }
+  .filter-btn {
+    padding: 8px 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--mid);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--charcoal); color: var(--cream); border-color: var(--charcoal);
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .product-card { cursor: pointer; }
+  .product-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .product-card:hover .product-img { transform: scale(1.02); }
+  .product-img svg { width: 70px; opacity: 0.5; }
+  .product-badge {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--charcoal); color: var(--cream);
+    font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 2px;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 400; margin-bottom: 4px;
+  }
+  .product-cat { font-size: 0.8rem; color: var(--light); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* CONTACT */
+  #contact { background: var(--charcoal); color: var(--cream); }
+  #contact .section-tag { color: var(--accent); }
+  #contact h2 { color: var(--cream); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; margin-top: 3rem;
+  }
+  .contact-info { color: var(--light); font-weight: 300; }
+  .contact-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 300; color: var(--cream);
+    margin-bottom: 1rem;
+  }
+  .contact-detail {
+    display: flex; gap: 12px; align-items: flex-start; margin-bottom: 1.2rem;
+  }
+  .contact-icon {
+    width: 36px; height: 36px; background: rgba(255,255,255,0.08);
+    border-radius: 2px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-icon svg { width: 16px; height: 16px; fill: var(--accent); }
+  .contact-detail p { font-size: 0.9rem; line-height: 1.5; }
+  .contact-detail strong { color: var(--cream); display: block; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2px; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light); }
+  .form-group input, .form-group textarea, .form-group select {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 12px 14px;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--accent);
+  }
+  .form-group textarea { min-height: 100px; resize: vertical; }
+  .form-group select option { background: var(--charcoal); }
+  .btn-submit {
+    background: var(--accent);
+    color: var(--cream);
+    border: none;
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
+  .btn-submit:hover { background: #a07850; }
+
+  /* WHATSAPP FLOAT */
+  .wa-float {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    background: #25d366;
+    color: white;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+    z-index: 200;
+    transition: transform 0.2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+  .wa-float svg { width: 28px; height: 28px; fill: white; }
+
+  /* FOOTER */
+  footer {
+    background: #111;
+    color: var(--light);
+    text-align: center;
+    padding: 2rem 5vw;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+  }
+  footer span { color: var(--accent); }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    #home { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .hero-text { padding: 5rem 6vw 5rem 6vw; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-img-wrap { max-width: 400px; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--cream); padding: 1.5rem 5vw; border-bottom: 1px solid var(--border); gap: 1rem; }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .form-row { grid-template-columns: 1fr; }
+    section { padding: 5rem 6vw; }
+  }
+  @media (max-width: 560px) {
+    .products-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="logo">Zara <span>Threads</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-text">
+    <p class="hero-tag">New Collection 2025</p>
+    <h1>Fashion made for <em>every</em> woman & girl</h1>
+    <p class="hero-sub">From elegant ladies wear to trendy teen styles — curated with love, crafted with care. Visit our store or order via WhatsApp.</p>
+    <div class="btn-group">
+      <a href="#products" class="btn-primary">Explore Collection</a>
+      <a href="#about" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-visual-inner">
+      <svg class="dress-svg" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M35 10 Q50 5 65 10 L80 40 L60 45 L70 130 L30 130 L40 45 L20 40 Z" fill="#b8956a" opacity="0.6"/>
+        <path d="M42 10 Q50 8 58 10 L60 20 Q50 22 40 20 Z" fill="#a07850"/>
+        <circle cx="50" cy="8" r="4" fill="#a07850"/>
+      </svg>
+      <p class="hero-visual-label">Crafted with elegance</p>
+      <div class="hero-float-badge">
+        <span class="num">500+</span>
+        <span class="lbl">Styles in store</span>
+      </div>
+    </div>
+    <div class="hero-float-top">Exclusive Designs</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-tag">Who we are</p>
+  <h2>A family shop with a <em>passion</em> for style</h2>
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <div class="about-img">
+        <svg viewBox="0 0 120 160" width="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="10" width="80" height="140" rx="4" fill="#b8956a" opacity="0.25"/>
+          <path d="M40 30 Q60 20 80 30 L90 70 L65 75 L75 145 L45 145 L55 75 L30 70 Z" fill="#b8956a" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="about-img-accent"></div>
+    </div>
+    <div class="about-text">
+      <p>Welcome to <strong>Zara Threads</strong> — your neighbourhood fashion destination for ladies and teenage girls. We believe every woman deserves to feel beautiful, confident, and uniquely herself.</p>
+      <p>We stock a handpicked range of ladies kurtas, dresses, salwar suits, casual wear, and custom-designed outfits for teenage girls. Our collection blends modern trends with timeless elegance.</p>
+      <p>Every piece in our store is carefully selected to offer the best quality at an honest price. Whether you're dressing for a festival, a casual day out, or a special occasion — we have something just for you.</p>
+      <div class="stats-row">
+        <div class="stat">
+          <span class="num">500+</span>
+          <span class="lbl">Designs</span>
+        </div>
+        <div class="stat">
+          <span class="num">10+</span>
+          <span class="lbl">Years in business</span>
+        </div>
+        <div class="stat">
+          <span class="num">5K+</span>
+          <span class="lbl">Happy customers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <p class="section-tag">Our collection</p>
+  <h2>Styles for <em>every</em> occasion</h2>
+  <div class="category-filter">
+    <button class="filter-btn active">All</button>
+    <button class="filter-btn">Ladies Wear</button>
+    <button class="filter-btn">Teen Girls</button>
+    <button class="filter-btn">Custom Designs</button>
+    <button class="filter-btn">Occasion Wear</button>
+  </div>
+  <div class="products-grid">
+
+    <!-- Card 1 -->
+    <div class="product-card">
+      <div class="product-img" style="background: #f0e8de;">
+        <span class="product-badge">New</span>
+        <svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25 15 Q40 8 55 15 L65 40 L48 44 L54 100 L26 100 L32 44 L15 40 Z" fill="#b8956a" opacity="0.6"/>
+          <circle cx="40" cy="12" r="5" fill="#a07850" opacity="0.7"/>
+        </svg>
+      </div>
+      <p class="product-name">Floral Anarkali Kurta</p>
+      <p class="product-cat">Ladies Wear</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="product-card">
+      <div class="product-img" style="background: #e8edf0;">
+        <span class="product-badge">Popular</span>
+        <svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="15" width="40" height="80" rx="3" fill="#7a9bb5" opacity="0.5"/>
+          <rect x="25" y="10" width="30" height="12" rx="2" fill="#5a7a95" opacity="0.6"/>
+          <line x1="40" y1="25" x2="40" y2="95" stroke="#5a7a95" stroke-width="1.5" opacity="0.4"/>
+        </svg>
+      </div>
+      <p class="product-name">Western Co-ord Set</p>
+      <p class="product-cat">Teen Girls</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="product-card">
+      <div class="product-img" style="background: #ede8f0;">
+        <span class="product-badge">Custom</span>
+        <svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 20 Q40 10 60 20 L70 50 Q55 55 50 55 L55 100 L25 100 L30 55 Q25 55 10 50 Z" fill="#9b7ab5" opacity="0.5"/>
+          <path d="M30 20 Q40 17 50 20 L50 30 Q40 33 30 30 Z" fill="#7a5a9b" opacity="0.6"/>
+        </svg>
+      </div>
+      <p class="product-name">Designer Salwar Suit</p>
+      <p class="product-cat">Custom Design</p>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="product-card">
+      <div class="product-img" style="background: #f0ebe8;">
+        <svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="40" cy="80" rx="26" ry="22" fill="#c8956a" opacity="0.4"/>
+          <rect x="28" y="20" width="24" height="60" rx="3" fill="#b8856a" opacity="0.5"/>
+          <rect x="32" y="15" width="16" height="10" rx="2" fill="#a07050" opacity="0.6"/>
+        </svg>
+      </div>
+      <p class="product-name">Casual Maxi Dress</p>
+      <p class="product-cat">Ladies Wear</p>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="product-card">
+      <div class="product-img" style="background: #eaf0e8;">
+        <span class="product-badge">Festive</span>
+        <svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 30 Q40 15 65 30 L70 55 L50 60 L60 100 L20 100 L30 60 L10 55 Z" fill="#6aaa6a" opacity="0.45"/>
+          <path d="M28 30 Q40 25 52 30 L52 42 Q40 46 28 42 Z" fill="#4a8a4a" opacity="0.55"/>
+        </svg>
+      </div>
+      <p class="product-name">Silk Lehenga Set</p>
+      <p class="product-cat">Occasion Wear</p>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="product-card">
+      <div class="product-img" style="background: #f0e8ec;">
+        <svg viewBox="0 0 80 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="22" y="18" width="36" height="50" rx="3" fill="#c56a8a" opacity="0.4"/>
+          <rect x="22" y="68" width="36" height="32" rx="2" fill="#b55a7a" opacity="0.45"/>
+          <rect x="28" y="12" width="24" height="10" rx="2" fill="#a04a6a" opacity="0.5"/>
+        </svg>
+      </div>
+      <p class="product-name">Teen Party Jumpsuit</p>
+      <p class="product-cat">Teen Girls</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-tag">Get in touch</p>
+  <h2>Visit us or <em>order</em> online</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>We'd love to hear from you</h3>
+      <p style="margin-bottom: 2rem;">Come visit our store, drop us a message, or simply WhatsApp us your requirements — we're happy to help!</p>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <p><strong>Address</strong>Your shop address, Street Name,<br>Town, Kerala – PIN Code</p>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </div>
+        <p><strong>Phone / WhatsApp</strong>+91 XXXXX XXXXX</p>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+        </div>
+        <p><strong>Hours</strong>Mon – Sat: 9:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 6:00 PM</p>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your name</label>
+          <input type="text" placeholder="Priya Nair" required>
+        </div>
+        <div class="form-group">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" placeholder="+91 98765 43210" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Category of interest</label>
+        <select>
+          <option>Ladies Wear</option>
+          <option>Teen / Girls Wear</option>
+          <option>Custom Design</option>
+          <option>Occasion Wear</option>
+          <option>General Enquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us what you're looking for..."></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send Message</button>
+      <div id="form-success" style="display:none; color: #4ade80; font-size: 0.88rem; margin-top: 0.5rem;">
+        ✓ Thank you! We'll get back to you on WhatsApp soon.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2025 <span>Zara Threads</span>. Crafted with love for every woman & girl.</p>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I'm%20interested%20in%20your%20collection!" class="wa-float" target="_blank" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  // Filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.reset();
+  }
+</script>
+</body>
+</html>
